@@ -18,8 +18,15 @@ The script `scripts/meta_masld_basic_eda.R` describes an exploratory data analys
 
 ## Included plots
 
-![Uncorrected PCA of 832 MASLD samples](plots/uncorr_pca.png) 
-![Corrected PCA of 832 MASLD samples][plots/corr_pca.png] 
-![Corrected PCA of 832 MASLD samples, coloured by fibrosis][plots/fib_pca.png] 
-![Volcano plot of 'mild' vs 'advanced' fibrosis][plots/mild_advanced_volcano.png] 
+### Uncorrected PCA plot
+![Uncorrected PCA of 832 MASLD samples](plots/uncorr_pca.png)
+
+### PCA corrected for 'BioProject'
+![Corrected PCA of 832 MASLD samples](plots/corr_pca.png)
+
+### PCA corrected for 'BioProject', coloured by fibrosis stage 
+![Corrected PCA of 832 MASLD samples, coloured by fibrosis](plots/fib_pca.png)
+
+### Volcano plot of DEGs (mild vs advanced fibrosis)
+![Volcano plot of 'mild' vs 'advanced' fibrosis](plots/mild_advanced_volcano.png) 
 
