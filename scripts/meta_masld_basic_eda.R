@@ -3,8 +3,6 @@ library(edgeR)
 library(limma)
 library(tidyverse)
 
-
-
 # function for simple PCA plots
 mypca <- function(pcs, md, grp) {
   df <- as.data.frame(pcs$x)
@@ -56,6 +54,7 @@ v <- voom(dge, design = design)
 # calculate and plot PCA
 pca <- prcomp(t(v$E))
 g1 <- mypca(pca, meta_masld, 'BioProject')
+ggsave(filename=here('plots', 'uncorr_pca.png'), plot=g1)
 
 # correct experiment effect for further viz
 treatment.design <- design[,1:5]
@@ -65,7 +64,10 @@ corrected_v <- removeBatchEffect(v, design=treatment.design, covariates=batch.de
 # calculate and plot experiment-corrected PCA
 cpca <- prcomp(t(corrected_v))
 g2 <- mypca(cpca, meta_masld, 'BioProject')
+ggsave(filename=here('plots', 'corr_pca.png'), plot=g2)
 g3 <- mypca(cpca, meta_masld, 'fibrosis')
+ggsave(filename=here('plots', 'fib_pca.png'), plot=g3)
+
 
 # analysis - "mild" (F0-2) vs "advanced" (F3-4), correcting for experiment
 
@@ -96,6 +98,7 @@ g4 <- ggplot(data=diffgenes, aes(x=logFC, y=-log10(adj.P.Val))) +
   theme_minimal() +
   ggrepel::geom_label_repel(aes(label=dge_labels, color=change)) +
   guides(color='none')
+ggsave(filename=here('plots', 'mild_advanced_volcano.png'), plot=g4)
 
 
 
